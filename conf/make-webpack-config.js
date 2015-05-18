@@ -1,16 +1,18 @@
 var fs = require('fs');
+var path = require('path');
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 function extractForProduction(loaders) {
   return ExtractTextPlugin.extract('style', loaders.substr(loaders.indexOf('!')));
 }
 
-module.exports = function(options) {
-  options.lint = fs.existsSync(__dirname + '/../.eslintrc') && options.lint !== false;
+module.exports = function (options) {
+  options.lint = fs.existsSync(path.join(__dirname, '/../.eslintrc')) &&
+    options.lint !== false;
 
-  var cssLoaders = 'style!css!autoprefixer?browsers=last 2 versions';
+  var cssLoaders = 'style!css!';
   var scssLoaders = cssLoaders + '!sass';
   var sassLoaders = scssLoaders + '?indentedSyntax=sass';
   var lessLoaders = cssLoaders + '!less';
@@ -70,19 +72,19 @@ module.exports = function(options) {
         },
         {
           test: /\.png$/,
-          loader: "url?limit=100000&mimetype=image/png",
+          loader: 'url?limit=100000&mimetype=image/png',
         },
         {
           test: /\.svg$/,
-          loader: "url?limit=100000&mimetype=image/svg+xml",
+          loader: 'url?limit=100000&mimetype=image/svg+xml',
         },
         {
           test: /\.gif$/,
-          loader: "url?limit=100000&mimetype=image/gif",
+          loader: 'url?limit=100000&mimetype=image/gif',
         },
         {
           test: /\.jpg$/,
-          loader: "file",
+          loader: 'file',
         },
       ],
     },
@@ -92,8 +94,8 @@ module.exports = function(options) {
     plugins: options.production ? [
       // Important to keep React file size down
       new webpack.DefinePlugin({
-        "process.env": {
-          "NODE_ENV": JSON.stringify("production"),
+        'process.env': {
+          'NODE_ENV': JSON.stringify('production'),
         },
       }),
       new webpack.optimize.DedupePlugin(),
@@ -102,7 +104,7 @@ module.exports = function(options) {
           warnings: false,
         },
       }),
-      new ExtractTextPlugin("app.[hash].css"),
+      new ExtractTextPlugin('app.[hash].css'),
       new HtmlWebpackPlugin({
         template: './conf/tmpl.html',
         production: true,

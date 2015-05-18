@@ -1,8 +1,9 @@
+/*eslint-env jasmine */
 import React from 'react/addons';
 import Application from '../index.jsx';
 
-describe('Application', function() {
-  it('displays the component', function() {
+describe('Application', function () {
+  it('displays the component', function () {
     const TestUtils = React.addons.TestUtils;
 
     const application = TestUtils.renderIntoDocument(

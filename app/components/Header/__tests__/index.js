@@ -1,8 +1,9 @@
+/*eslint-env jasmine */
 import React from 'react/addons';
 import Header from '../index.jsx';
 
-describe('Header', function() {
-  it('displays the title', function() {
+describe('Header', function () {
+  it('displays the title', function () {
     const TestUtils = React.addons.TestUtils;
 
     const header = TestUtils.renderIntoDocument(
