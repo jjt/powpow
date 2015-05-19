@@ -8,6 +8,7 @@ import Header from '../Header';
 require('./style.sass');
 
 
+/* eslint no-shadow:0 */
 export default class Application extends React.Component {
   static displayName = 'Application'
   render() {

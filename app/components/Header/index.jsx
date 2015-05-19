@@ -12,6 +12,7 @@ require('./style.sass');
 */
 const logoURL = require('./images/react-logo.svg');
 
+/* eslint no-shadow:0 */
 export default class Header extends React.Component {
   static displayName = 'Header'
   render() {
