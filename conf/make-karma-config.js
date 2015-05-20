@@ -9,21 +9,24 @@ module.exports = function (options) {
     files: [
       // This shim adds .bind to PhantomJS
       './phantomjs-shim.js',
-      '../app/**/__tests__/*.js',
+      '../app/**/__tests__/*.spec.js',
+      '../lib/**/__tests__/*.spec.js',
     ],
 
     preprocessors: {
-      '../app/**/__tests__/*.js': ['webpack'],
+      '../**/__tests__/*.js': ['webpack'],
     },
 
     webpackMiddleware: {
         noInfo: true,
+        quiet: true
     },
 
     reporters: ['mocha'],
 
     plugins: [
       'karma-webpack',
+      'karma-babel-preprocessor',
       'karma-mocha',
       'karma-chai',
       'karma-phantomjs-launcher',
