@@ -1,0 +1,164 @@
+{
+  "parser": "babel-eslint",
+
+  // ESLint is pluggable, any plugins go here
+  "plugins": [
+    "react"
+  ],
+
+  // Specify environments
+  // http://eslint.org/docs/user-guide/configuring#specifying-environments
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+
+  // Language features
+  // http://eslint.org/docs/user-guide/configuring#specifying-language-options
+  "ecmaFeatures": {
+		"jsx": true,
+    "classes": true,
+    "modules": true,
+		"blockBindings": true,
+		"objectLiteralShorthandMethods": true,
+		"objectLiteralShorthandProperties": true,
+		"arrowFunctions": true,
+		"destructuring": true,
+		"templateStrings": true
+  },
+
+  // Global variables
+  // Things on the global scope like _ (Underscore) or $ (jQuery) in the browser
+  // http://eslint.org/docs/user-guide/configuring#specifying-globals
+  "globals": {
+
+  },
+
+  // Rules
+  // Meat and potatoes of ESLint and plugins
+  // http://eslint.org/docs/rules/
+  "rules": {
+    //
+    // Style Rules
+    //
+
+    // Standard 2 space tabbed whitespace
+    "indent": [2, 2],
+
+    // Disallow multiple blank lines
+    "no-multiple-empty-lines": 2,
+
+    // The one true brace style
+    "brace-style": [2, "1tbs", { "allowSingleLine": true }],
+
+    // Require curly braces, even for one line statements
+    "curly": 2,
+
+    // Require a space before blocks
+    "space-before-blocks": [2, "always"],
+
+    // Don't care about trailing commas in array and object literals
+    // If project targets <=IE8, then change this to an error
+    "comma-dangle": 0,
+
+    // Require a space after the colon in object literals
+    "key-spacing": [2, { "beforeColon": false, "afterColon": true }],
+
+    // Require camelCase naming, but don't check object properties
+    "camelcase": [2, {"properties": "never"}],
+
+    // Require double quotes with an exception for avoiding escaping
+    "quotes": [2, "single", "avoid-escape"],
+
+    // Always require a space after keywords, such as if and else
+    "space-after-keywords": 2,
+
+    // Require a space between anonymous function keyword and parens
+    "space-before-function-paren": [2, {"anonymous": "always", "named": "never"}],
+
+    // Disallow spaces between function identifier and parens when calling
+    "no-spaced-func": 2,
+
+    // Require variables to be used, however allow function arguments a blank
+    // slate in the interest of self-documenting code
+    "no-unused-vars": [2, {"vars": "all", "args": "none"}],
+
+    // Warn about comments without a space after the opening slashes
+    "spaced-line-comment": 1,
+
+    // Require use of `_this` when capturing context
+    // Helps grepping for `this.`, avoids collision with Worker `self`
+    "consistent-this": [1, "_this"],
+
+
+    //
+    // JavaScript Rules
+    //
+
+    // Require strict equality with the one exception of null
+    "eqeqeq": [2, "allow-null"],
+
+    // Do not requre `'use strict'`
+    "strict": 0,
+
+    // Allow pseudo-private property names
+    "no-underscore-dangle": 0,
+
+    // Do not allow `debugger` statements left in
+    "no-debugger": 2,
+
+    // Allow fallthrough in switch case statements
+    "no-fallthrough": 0,
+
+    // Allow assignment in return statements
+    "no-return-assign": 0,
+
+    // Nested ternaries are opaque and hard to reason about
+    "no-nested-ternary": 2,
+
+    // Prefer dot notation where possible
+    "dot-notation": 1,
+
+    //
+    // React Rules
+    // Requires react plugin https://github.com/yannickcr/eslint-plugin-react
+    //
+
+    // Require a displayName property to be set on Components
+    "react/display-name": 1,
+
+    // Enforce our quote style rules for JSX props
+    "react/jsx-quotes": [2, "double", "avoid-escape"],
+
+    // Disallow undeclared variables in JSX
+    "react/jsx-no-undef": 2,
+
+    // Don't care about prop order in JSX
+    "react/jsx-sort-props": 0,
+
+    // Prevent variables used in JSX to be incorrectly marked as unused
+    "react/jsx-uses-vars": 2,
+
+    // Allow setState to be used in componentDidMount
+    "react/no-did-mount-set-state": 0,
+
+    // Warn when using setState in componentDidUpdate
+    "react/no-did-update-set-state": 1,
+
+    // Disallow multiple components to be defined in a single file
+    "react/no-multi-comp": 2,
+
+    // Warn on unknown DOM props in JSX
+    "react/no-unknown-property": 1,
+
+    // Do not require propTypes to be defined
+    "react/prop-types": 0,
+
+    // Warn when you should probably be using a self closing component in JSX
+    "react/self-closing-comp": 1,
+
+    // Require wrapping parens around multi-line JSX statements
+    "react/wrap-multilines": 1
+  }
+}
