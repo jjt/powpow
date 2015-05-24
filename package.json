@@ -16,7 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^3.8",
-    "react": "^0.13"
+    "react": "^0.13",
+    "react-router": "^0.13.3"
   },
   "devDependencies": {
     "autoprefixer-loader": "^1.2.0",

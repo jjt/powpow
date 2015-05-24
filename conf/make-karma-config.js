@@ -9,8 +9,7 @@ module.exports = function (options) {
     files: [
       // This shim adds .bind to PhantomJS
       './phantomjs-shim.js',
-      '../app/**/*.spec.js',
-      '../lib/**/*.spec.js',
+      '../src/**/*.spec.js',
     ],
 
     preprocessors: {

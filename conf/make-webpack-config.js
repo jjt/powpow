@@ -27,7 +27,7 @@ module.exports = function (options) {
   var jsLoaders = ['babel'];
 
   return {
-    entry: './app/index.jsx',
+    entry: './src/app/index.jsx',
     debug: !options.production,
     devtool: options.devtool,
     output: {

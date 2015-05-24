@@ -9,16 +9,13 @@ var $ = require('gulp-load-plugins')();
 
 // Explicitly include paths for performance
 var jsPathsApp = [
-  './app/**/*.js*',
-  './lib/**/*.js*',
+  './src/**/*.js*',
   './conf/**/*.js',
   '!./**/*.spec.js'
 ];
 
 var jsPathsTest = [
-  './app/**/*.spec.js',
-  './lib/**/*.spec.js',
-  './conf/**/*.spec.js'
+  './src/**/*.spec.js'
 ];
 
 // Plumber'd source to catch errors
