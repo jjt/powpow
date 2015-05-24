@@ -41,7 +41,6 @@ var src = function () {
 //------------------------------------------------------------------------------
 gulp.task('eslint:app', function () {
   return src(jsPathsApp)
-    .pipe($.cached('eslint'))
     .pipe($.eslint())
     .pipe($.eslint.format())
     .pipe($.eslint.failOnError())
@@ -49,7 +48,6 @@ gulp.task('eslint:app', function () {
 
 gulp.task('eslint:test', function () {
   return src(jsPathsTest)
-    .pipe($.cached('eslint'))
     .pipe($.eslint({
       rules: {
         'no-unused-expressions': 0
@@ -65,13 +63,12 @@ gulp.task('eslint:test', function () {
 var karmaConf = {
   configFile: process.env.PWD + '/conf/karma.conf.js'
 }
-console.log(karmaConf);
+
 gulp.task('test', function (cb) {
   karma.server.start(_.assign({ singleRun: true }, karmaConf),  cb);
 });
 
 gulp.task('test:watch', function (cb) {
-  console.log("TESTSWATH");
   karma.server.start(_.assign({ singleRun: false }, karmaConf),  cb);
 });
 
@@ -84,4 +81,4 @@ gulp.task('watch', function () {
   gulp.watch(jsPathsTest, ['eslint:test']);
 });
 
-gulp.task('default', ['eslint:app', 'eslint:test', 'test:watch', 'watch']);
+gulp.task('default', ['eslint:app', 'eslint:test', 'watch']);

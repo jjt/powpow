@@ -9,8 +9,8 @@ module.exports = function (options) {
     files: [
       // This shim adds .bind to PhantomJS
       './phantomjs-shim.js',
-      '../app/**/__tests__/*.spec.js',
-      '../lib/**/__tests__/*.spec.js',
+      '../app/**/*.spec.js',
+      '../lib/**/*.spec.js',
     ],
 
     preprocessors: {
@@ -32,6 +32,13 @@ module.exports = function (options) {
       'karma-phantomjs-launcher',
       'karma-mocha-reporter',
     ],
+
+    client: {
+      mocha: {
+        reporter: 'html', // change Karma's debug.html to the mocha web reporter
+        ui: 'bdd'
+      }
+    }
   };
 
   if (options.coverage) {
