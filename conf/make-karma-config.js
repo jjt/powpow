@@ -13,7 +13,7 @@ module.exports = function (options) {
     ],
 
     preprocessors: {
-      '../**/__tests__/*.js': ['webpack'],
+      '../src/**/*.spec.js': ['webpack'],
     },
 
     webpackMiddleware: {

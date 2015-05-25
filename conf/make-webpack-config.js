@@ -12,16 +12,19 @@ module.exports = function (options) {
   options.lint = fs.existsSync(path.join(__dirname, '/../.eslintrc')) &&
     options.lint !== false;
 
+
+  var bowerPath = (path.resolve(__dirname, '../bower_components'));
+  var nodeModulesPath = (path.resolve(__dirname, '../node_modules'));
+
   var cssLoaders = 'style!css!';
-  var scssLoaders = cssLoaders + '!sass';
-  var sassLoaders = scssLoaders + '?indentedSyntax=sass';
-  var lessLoaders = cssLoaders + '!less';
+  var scssLoaders = [cssLoaders, '!sass', '?includePaths[]=', bowerPath,
+    '&includePaths[]=', nodeModulesPath].join('');
+  var sassLoaders = scssLoaders + '&indentedSyntax=sass';
 
   if (options.production) {
     cssLoaders = extractForProduction(cssLoaders);
     sassLoaders = extractForProduction(sassLoaders);
     scssLoaders = extractForProduction(scssLoaders);
-    lessLoaders = extractForProduction(lessLoaders);
   }
 
   var jsLoaders = ['babel'];
@@ -65,10 +68,6 @@ module.exports = function (options) {
         {
           test: /\.scss$/,
           loader: scssLoaders,
-        },
-        {
-          test: /\.less$/,
-          loader: lessLoaders,
         },
         {
           test: /\.png$/,
