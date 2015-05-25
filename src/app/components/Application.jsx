@@ -4,7 +4,10 @@ export default class Application extends React.Component {
   static displayName = 'Application';
   render() {
     return (
-      <div>I am the app</div>
+      <div>
+        <div>airesnta</div>
+        <header>Header</header>
+      </div>
     );
   }
 }
