@@ -52,7 +52,7 @@
     "isparta": "^2.2.0",
     "isparta-instrumenter-loader": "^0.1.1",
     "karma": "^0.12.32",
-    "karma-babel-preprocessor": "^5.1.0",
+    "karma-babel-preprocessor": "^5.2.1",
     "karma-chai": "^0.1.0",
     "karma-coverage": "^0.2.7",
     "karma-mocha": "^0.1.10",

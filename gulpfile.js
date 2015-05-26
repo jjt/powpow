@@ -54,6 +54,11 @@ gulp.task('eslint:test', function () {
     .pipe($.eslint.failOnError())
 });
 
+gulp.task('eslint:watch', function () {
+  gulp.watch(jsPathsApp, ['eslint:app']);
+  gulp.watch(jsPathsTest, ['eslint:test']);
+});
+
 //------------------------------------------------------------------------------
 // Testing (Karma)
 //------------------------------------------------------------------------------
@@ -61,21 +66,16 @@ var karmaConf = {
   configFile: process.env.PWD + '/conf/karma.conf.js'
 }
 
-gulp.task('test', function (cb) {
-  karma.server.start(_.assign({ singleRun: true }, karmaConf),  cb);
+gulp.task('test', function (done) {
+  karma.server.start(_.assign({ singleRun: true }, karmaConf),  done);
 });
 
-gulp.task('test:watch', function (cb) {
-  karma.server.start(_.assign({ singleRun: false }, karmaConf),  cb);
+gulp.task('test:watch', function (done) {
+  karma.server.start(_.assign({ singleRun: false }, karmaConf),  done);
 });
 
 
 //------------------------------------------------------------------------------
 // Default tasks/watch
 //------------------------------------------------------------------------------
-gulp.task('watch', function () {
-  gulp.watch(jsPathsApp, ['eslint:app']);
-  gulp.watch(jsPathsTest, ['eslint:test']);
-});
-
-gulp.task('default', ['eslint:app', 'eslint:test', 'watch']);
+gulp.task('default', ['eslint:watch', 'test:watch']);

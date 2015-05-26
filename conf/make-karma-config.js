@@ -9,16 +9,15 @@ module.exports = function (options) {
     files: [
       // This shim adds .bind to PhantomJS
       './phantomjs-shim.js',
-      '../src/**/*.spec.js',
+      '../src/**/__tests__/*.spec.js',
     ],
 
     preprocessors: {
-      '../src/**/*.spec.js': ['webpack'],
+      '../src/**/__tests__/*.spec.js': ['webpack'],
     },
 
     webpackMiddleware: {
         noInfo: true,
-        quiet: true
     },
 
     reporters: ['mocha'],
