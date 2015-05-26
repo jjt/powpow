@@ -1,11 +1,15 @@
-var _ = require('lodash');
-var gulp = require('gulp');
-var beep = require('beepbeep');
-var chalk = require('chalk');
-var karma = require('karma');
-var notifier = require('node-notifier');
-
-var $ = require('gulp-load-plugins')();
+var
+  _ = require('lodash'),
+  path = require('path'),
+  gulp = require('gulp'),
+  beep = require('beepbeep'),
+  chalk = require('chalk'),
+  karma = require('karma'),
+  notifier = require('node-notifier'),
+  webpack = require('webpack'),
+  WebpackDevServer = require('webpack-dev-server'),
+  webpackConfig = require('./conf/webpack.config'),
+  $ = require('gulp-load-plugins')();
 
 // Explicitly include paths for performance
 var jsPathsApp = [
@@ -32,6 +36,28 @@ var src = function () {
       this.emit('end');
     }));
 }
+
+//------------------------------------------------------------------------------
+// Webpack (WIP - non-functional, use 'npm start')
+//------------------------------------------------------------------------------
+
+gulp.task('webpack:dev', function (done) {
+ // Start a webpack-dev-server.
+  var devServer = new WebpackDevServer(webpack(webpackConfig), {
+    contentBase: path.resolve(webpackConfig.output.path),
+    hot: true,
+    progress: true,
+    inline: true
+  });
+
+  devServer.listen(8080, "0.0.0.0", function(err) {
+    if (err) {
+      throw new $.util.PluginError("webpack-dev-server", err);
+    }
+    $.util.log("[webpack-dev-server]", "http://localhost:8080");
+    done();
+  });
+});
 
 //------------------------------------------------------------------------------
 // ESLint
@@ -62,18 +88,19 @@ gulp.task('eslint:watch', function () {
 //------------------------------------------------------------------------------
 // Testing (Karma)
 //------------------------------------------------------------------------------
-var karmaConf = {
-  configFile: process.env.PWD + '/conf/karma.conf.js'
-}
+var confPath = process.env.PWD + '/conf';
 
 gulp.task('test', function (done) {
-  karma.server.start(_.assign({ singleRun: true }, karmaConf),  done);
+  karma.server.start({configFile: confPath + '/karma.conf.js', singleRun: true}, done);
 });
 
 gulp.task('test:watch', function (done) {
-  karma.server.start(_.assign({ singleRun: false }, karmaConf),  done);
+  karma.server.start({configFile: confPath + '/karma.conf.js', singleRun: false}, done);
 });
 
+gulp.task('test:coverage', function (done) {
+  karma.server.start({configFile: confPath + '/karma.coverage.conf.js', singleRun: true}, done);
+});
 
 //------------------------------------------------------------------------------
 // Default tasks/watch

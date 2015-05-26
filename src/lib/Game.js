@@ -1,6 +1,9 @@
 export default class Game {
-  static test = 'testaaa';
   constructor() {
-    this.yeah = 'yeah';
+    this.round = 0;
+  }
+
+  nextRound() {
+    this.round++;
   }
 }

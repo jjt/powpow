@@ -1,12 +1,21 @@
 import Game from '../Game.js';
 
-
 describe('Game', function () {
-  it('exists', function () {
-    expect(new Game()).to.be.ok;
+  let game;
+
+  beforeEach(function () {
+    game = new Game();
   });
 
-  it('has a static test prop', function () {
-    expect(Game.test).to.eq('testaaa');
+  it('exists', function () {
+    expect(game).to.be.ok;
+  });
+
+  it('goes to the next round', function () {
+    expect(game.round).to.eq(0);
+    game.nextRound();
+    game.nextRound();
+    game.nextRound();
+    expect(game.round).to.eq(3);
   });
 });
